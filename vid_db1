@@ -1,0 +1,59 @@
+<?php
+$dblink = mysqli_connect("Localhost" , "root" , "" , "db_karam") 
+	or die ("error connection");
+	
+echo " <b>successfuly </b><br>";
+$sqlquery="select * from t1";
+if($result = mysqli_query($dblink, $sqlquery)){
+	echo"<table border='1'>";
+	echo "<tr>";
+	echo "<th>id</th><th>name</th><th>salary</th><th>country</th>";
+	echo "<tr>";
+	while ($row = mysqli_fetch_assoc($result)){
+		echo "<tr>"	;
+		echo "<td>".$row['id']."</td><td>".$row['name']."<td>".$row['salary'].
+				"</td><td>".$row['country']."</td>";
+		echo "</tr>";
+		}
+	echo "<br>";
+		
+	echo "number of rows selected is ".mysqli_num_rows($result);
+	}
+	
+	mysqli_close($dblink);
+$t = time();
+$trans = "$t Reords were display \r \n ";
+$myfile="log.txt";
+$handle=fopen($myfile , 'a+') or die ("can't open file");
+fwrite($handle , $trans);
+fclose($handle);
+echo"<br> _________________";
+
+
+
+/*
+echo "<table border='1'>";
+
+echo "<tr>";
+echo "<th>id</th><th>Name</th>";
+echo "<th>salary</th><th>country</th>";
+echo "</tr>";
+
+
+
+while($row=mysqli_fetch_assoc($res)){
+echo "<tr>";
+echo "<td>".$row['id']."</td><td>".$row['name']."</td>";
+
+echo "<td>".$row['salary']."</td><td>".
+$row['country']."</td>";
+echo "</tr>";
+ }
+ 
+ echo "</table>";
+ 
+ */
+ 
+ 
+ 
+?>
